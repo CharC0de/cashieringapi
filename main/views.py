@@ -31,10 +31,10 @@ class RegisterView(generics.CreateAPIView):
     API endpoint that allows new users to register.
     Accepts multipart/form-data (to handle avatar image) and returns the created user.
     """
-    serializer_class = RegisterSerializer                              # uses our ModelSerializer to create users :contentReference[oaicite:3]{index=3}
-    # open to anonymous users :contentReference[oaicite:4]{index=4}
+    serializer_class = RegisterSerializer
+
     permission_classes = [permissions.AllowAny]
-    # handle file uploads & form data :contentReference[oaicite:5]{index=5}
+
     parser_classes = [parsers.MultiPartParser, parsers.FormParser]
 
 
@@ -46,7 +46,7 @@ class LoginView(APIView):
                             username=request.data.get('email'),
                             password=request.data.get('password'))
         if user:
-            # creates session :contentReference[oaicite:3]{index=3}
+
             login(request, user)
             return Response({'detail': 'Login successful'}, status=status.HTTP_200_OK)
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
