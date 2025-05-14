@@ -32,7 +32,7 @@ class RegisterView(generics.CreateAPIView):
     Accepts multipart/form-data (to handle avatar image) and returns the created user.
     """
     serializer_class = RegisterSerializer
-
+    authentication_classes = []
     permission_classes = [permissions.AllowAny]
 
     parser_classes = [parsers.MultiPartParser, parsers.FormParser]
